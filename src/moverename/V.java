@@ -14,14 +14,14 @@ public class V {
 				OptionElement unknownOption;
 
 				void call() {
-					setOptionAsSelected(this.unknownOption);
-				}
-
-				void setOptionAsSelected(OptionElement optionEl) {
-					optionEl.prop("selected", true);
-					optionEl.attr("selected", true);
+					setOptionSelectedStatus(this.unknownOption, true);
 				}
 			}
 		};
+	}
+	
+	void setOptionSelectedStatus(OptionElement optionEl, boolean value) {
+		optionEl.prop("selected", value);
+		optionEl.attr("selected", value);
 	}
 }
