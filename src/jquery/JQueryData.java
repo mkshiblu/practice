@@ -27,14 +27,7 @@ public class JQueryData {
 			if (data.getClass().getName() == "String") {
 				try {
 					
-					data =  data == "true" ? true :
-						data == "false" ? false :
-							 data == "null" ? null:
-						
-						// Only convert to a number if it doesn't change the string
-						data + "" == data ? data : 
-						rbrace.test(data) ? JSON.parse(data ): 
-							data;
+					data = getData(data);
 				}catch(Exception ex) {
 					
 				}
@@ -44,5 +37,30 @@ public class JQueryData {
 		}else {
 			data = null;
 		}
+	}
+	
+	Object getData(Object data) {
+		if ( data == "true" ) {
+			return true;
+		}
+
+		if ( data == "false" ) {
+			return false;
+		}
+
+		if ( data == "null" ) {
+			return null;
+		}
+
+		// Only convert to a number if it doesn't change the string
+		if ( data == data + "" ) {
+			return data;
+		}
+
+		if ( rbrace.test( data ) ) {
+			return JSON.parse( data );
+		}
+
+		return data;
 	}
 }
