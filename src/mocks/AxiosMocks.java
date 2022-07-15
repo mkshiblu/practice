@@ -17,7 +17,7 @@ public static interface  AxBuffer {
 		
 		public abstract void  streamOn(int x, int  y);
 
-		public static Object concat(String responseBuffer) {
+		public static MockString concat(String responseBuffer) {
 			// TODO Auto-generated method stub
 			return null;
 		}
@@ -34,6 +34,8 @@ public static interface  AxBuffer {
 	public static class Result{
 
 		public int statusCode;
+		public String responseType;
+		
 	}
 	public static class Resolve{
 
@@ -44,6 +46,11 @@ public static interface  AxBuffer {
 	public static class Response{
 
 		
+	}
+	
+	public static abstract class MockString{
+		
+		public abstract MockString toString(String format);
 	}
 
 }
