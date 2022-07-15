@@ -28,12 +28,17 @@ public class AxiosAdapters {
 			String responseBuffer = "";
 
 			stream.on("end", (a1, a2) -> {
-				var d = AxBuffer.concat(responseBuffer);
+				var responseData = AxBuffer.concat(responseBuffer);
 				// Resolve or reject the Promise based on the status
-				var x = res.statusCode >= 200 && res.statusCode < 300 ? resolve.invoke(response)
-						: reject.invoke(response);
+				var x = settle(resolve, reject, response);
 			});
 
 		};
+	}
+	
+	// Resolve or reject the Promise based on the status
+	int settle(Resolve resolve, Resolve reject, Response response) {
+		return res.statusCode >= 200 && res.statusCode < 300 ? resolve.invoke(response)
+				: reject.invoke(response);
 	}
 }
